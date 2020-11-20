@@ -29,7 +29,7 @@ class Profile(models.Model):
         instance.profile.save()
 
     def save_profile(self):
-        self.user
+        self.save()
 
     def delete_profile(self):
         self.delete()
