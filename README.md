@@ -1,4 +1,4 @@
-# Gallary-App
+# Picstagram
 
 ## Author
 
@@ -42,11 +42,11 @@ A text editor.
 
 ## Interactive Input
 
-View photos from diffrent categories.
+View photos from diffrent users.
 
-View photos from diffrent Locations.
+View and follow other users
 
-Search photos by categories
+Search users by name
 
 
 ## Development
@@ -62,4 +62,4 @@ To fix a bug or enhance an existing module, follow these steps:
 - Push to the branch (git push origin improve-feature)
 - Create a Pull Request
 
-#### Live Page https://gallarysnap.herokuapp.com/
+#### Live Page https://picstagram420.herokuapp.com/
