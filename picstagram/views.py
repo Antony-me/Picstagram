@@ -8,5 +8,5 @@ def home(request):
     print(user)
 
  
-    return render(request, 'all_pics/home.html',{'user':user})
+    return render(request, 'home.html',{'user':user})
 
