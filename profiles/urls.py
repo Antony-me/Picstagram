@@ -1,4 +1,10 @@
-from django.conf.urls import url
-from . import views
-from django.conf import settings
-from django.conf.urls.static import static
+# from django.conf.urls import url
+from .views import my_profile_view
+from django.urls import path
+
+
+app_name = 'profiles'
+
+urlpatterns = [
+    path('myprofile/', my_profile_view, name='myprofile'),
+]

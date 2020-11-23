@@ -17,8 +17,13 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.urls import path
 from .views import home
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('',home, name='home'),
+    path('',home, name='home'),
+    path('profiles/', include('profiles.urls', namespace='profiles')),
+    
 ]

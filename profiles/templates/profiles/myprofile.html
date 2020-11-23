@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+my-profile
+{% endblock title %}
+
+{% block content %} <br> <br>
+<h5>my profile</h5>
+<hr> <img src="{{profile.avatar.url}} " alt="">
+    <br>
+    {{profile.first_name}} <br>
+    {{profile.last_name}} <br> <hr>
+    {{profile.bio}} <br> <hr>
+    {{profile.slug}}
+
+{% endblock content %}
+
+{% block scripts %}
+
+<script>
+$(document).ready(function(){
+    console.log('working')
+})
+</script>
+{% endblock scripts %}

@@ -5,15 +5,8 @@ home
 {% endblock title %}
 
 {% block content %}
-{{hello}}
-<br>
-{{user}}
+
+<br> <h4>
+welcome Mr. {{user}} </h4>
 {% endblock content %}
 
-{% block scripts %}
-<script>
-$(document).ready(function(){
-    console.log('working')
-})
-</script>
-{% endblock scripts %}
