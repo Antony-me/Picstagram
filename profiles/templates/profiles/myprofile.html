@@ -12,7 +12,11 @@ my-profile
     {{profile.last_name}} <br> <hr>
     {{profile.bio}} <br> <hr>
     {{profile.slug}}
-
+    <form action="" method="POST">
+    {%csrf_token%}
+    {{form}}
+    <button type="submit" class="ui positive">Update Profile</button>
+    </form>
 {% endblock content %}
 
 {% block scripts %}
