@@ -26,7 +26,7 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path(r'',include('pics.urls', namespace='pics')),
-    path('profiles/', include('profiles.urls', namespace='profiles')),
+    path('accounts/', include('profiles.urls', namespace='profiles')),
     path(r'^tinymce/', include('tinymce.urls')),
     
     
