@@ -1,1 +1,2 @@
-web: gunicorn IPs.wsgi --log-file -
+web: gunicorn picstagram.wsgi --log-file -
+
