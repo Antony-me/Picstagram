@@ -38,7 +38,6 @@ ALLOWED_HOSTS = ['picstagram420.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'tinymce',
     'cloudinary',
     'bootstrap4',
     'pics.apps.PicsConfig',
