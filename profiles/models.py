@@ -34,6 +34,18 @@ class Profile(models.Model):
         return f"{self.user.username}-{self.created.strftime('%d-%m-%Y')}"
 
 
+    def get_friends(self):
+        return self.friends.all()
+
+    def get_friends_no(self):
+        return self.friends.all().count()
+
+    def get_posts_no(self):
+        return self.posts.all().count()
+
+    def get_all_authors_posts(self):
+        return self.posts.all()
+
     def save(self, *args, **kwargs):
         ex = False
         if self.first_name and self.last_name:
