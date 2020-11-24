@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tinymce',
     'cloudinary',
     'bootstrap4',
     'pics.apps.PicsConfig',
