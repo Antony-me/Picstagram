@@ -4,7 +4,7 @@
 
 [Antony Simiyu  Munyasia](https://github.com/Antony-me)
 
-This is a Django web application that is for displaying my photos taken from different locations and then put into different categories for viewing and searching.
+A clone of instagram that has the same functionalities of instagram
 
 <img src="static/images/gallary-app.png">
 
