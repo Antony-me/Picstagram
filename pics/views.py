@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from .models import Post, Like
 from profiles.models import Profile
 from .forms import PostModelForm, CommentModelForm
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 from django.contrib import messages
 
 def post_comment_create_and_list_view(request):
@@ -80,3 +80,16 @@ class PostUpdateView(UpdateView):
         else:
             form.add_error(None, "You need to be the author of the post in order to update it")
             return super().form_invalid(form)
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = 'posts/confirm_del.html'
+    success_url = reverse_lazy('posts:main-post-view')
+    # success_url = '/posts/'
+
+    def get_object(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        obj = Post.objects.get(pk=pk)
+        if not obj.author.user == self.request.user:
+            messages.warning(self.request, 'You need to be the author of the post in order to delete it')
+        return obj

@@ -14,6 +14,7 @@
                     <div class="row">
                         {% ifequal request.user item.author.user %}
                             <a href="{% url 'pics:post-update' item.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
+                            <a href="{% url 'pics:post-delete' item.pk %}"><button class="ui button bwhite-lg ">Delete</button></a>
                         {% endifequal %}
                     </div>
                 </div>
