@@ -1,5 +1,4 @@
 {%extends "registration/base.html"%}
-{% load bootstrap4 %}
 {% block content %}
 <div class="container">
   <div class="row">
@@ -16,13 +15,13 @@
         <div class="panel-heading">
           <h3 class="text-center">
               <img src="../../static/images/instalogo.png" class="logo" alt="">
-          </h3>
+          </h3>/accounts/register/complete/
         </div>
         <div class="panel-body">
 
           <form  action="/accounts/login/" method="post">
             {% csrf_token %}
-            {% bootstrap_form form%}
+          
 
             <div class="form-group" style=" width: 100%;">
                 <input type="submit" class="btn btn-primary " value="Login"  style="align-items: center; width: 100%;" >
