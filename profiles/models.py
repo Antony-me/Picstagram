@@ -48,7 +48,7 @@ class Profile(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     bio=models.CharField(max_length=350, default="No bio...")
     email=models.EmailField(max_length=200, blank=False)
-    avatar =CloudinaryField('image', default="ouao15vmh1c1wecxm5ir")
+    avatar =CloudinaryField('image', default="https://res.cloudinary.com/dpcrhvllf/image/upload/v1606208498/ouao15vmh1c1wecxm5ir.png")
     friends=models.ManyToManyField(User, blank=True, related_name='followers')
     created=models.DateTimeField(auto_now_add=True)
     slug= models.SlugField(unique=True, blank=True)

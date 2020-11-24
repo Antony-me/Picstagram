@@ -18,13 +18,16 @@ from django.conf.urls import url,include
 from django.urls import path
 from .views import home
 from django.conf import settings
-from django.conf.urls.static import static
+from django.contrib.auth import views 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django_registration.backends.one_step.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path(r'',include('pics.urls', namespace='pics')),
     path('profiles/', include('profiles.urls', namespace='profiles')),
+    url(r'^logout/$', views.logout, {"next_page": '/'}), 
     
     
 ]

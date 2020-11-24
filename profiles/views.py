@@ -5,8 +5,11 @@ from .models import Profile, Relationship
 from .forms import ProfileModelForm
 from django.views.generic import ListView
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
+
+@login_required(login_url='/accounts/login/')
 def my_profile_view(request):
 
     profile = Profile.objects.get(user=request.user)
