@@ -1,7 +1,10 @@
+from django.db import models
 from django.http import request
 from django.shortcuts import render
 from .models import Profile, Relationship
 from .forms import ProfileModelForm
+from django.views.generic import ListView
+from django.contrib.auth.models import User
 
 
 def my_profile_view(request):
@@ -28,17 +31,25 @@ def invites_received(request):
 
 
 
-def profiles_list(request):
-    user = request.user
-    profiles = Profile.objects.get_all_profiles(user)
-
-    return render(request,'profiles/profiles_list.html', {'profiles':profiles})
-
-
-
 def invites_list(request):
     user = request.user
     toinvites = Profile.objects.get_all_profiles_to_invite(user)
 
     return render(request,'profiles/toinvite_list.html', {'toinvites':toinvites})
 
+
+def profiles_list(request):
+    user = request.user
+    profiles = Profile.objects.get_all_profiles(user)
+
+    person= User.objects.get(username__iexact=request.user) 
+    person_profile = Profile.objects.get(user=person)
+
+    print(person_profile)
+
+    return render(request,'profiles/profiles_list.html', {'profiles':profiles, 'persons':person_profile})
+
+
+def profilesListView(ListView):
+    model = Profile
+    pass

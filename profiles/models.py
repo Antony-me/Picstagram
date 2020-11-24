@@ -8,6 +8,8 @@ from django.template.defaultfilters import slugify
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.db.models import Q
+from cloudinary.models import CloudinaryField
+
 
 
 
@@ -46,7 +48,7 @@ class Profile(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     bio=models.CharField(max_length=350, default="No bio...")
     email=models.EmailField(max_length=200, blank=False)
-    avatar=models.ImageField(default='media/avater.png', upload_to='media/avatar/')
+    avatar =CloudinaryField('image', default="ouao15vmh1c1wecxm5ir")
     friends=models.ManyToManyField(User, blank=True, related_name='followers')
     created=models.DateTimeField(auto_now_add=True)
     slug= models.SlugField(unique=True, blank=True)

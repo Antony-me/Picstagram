@@ -5,19 +5,13 @@ my invites
 {% endblock title %}
 
 {% block content %}
+
+{{persons}}
+
 {%  for profile in profiles%}
 <ul>
     <li>{{profile}}</li>
 </ul>
 
 {% endfor %}
-<hr>
-<h4>Invite</h4>
-
-{%  for toinvite in toinvites %}
-<ul>
-    <li>{{toinvite}}</li>
-</ul>
-{% endfor %}
-
 {% endblock content %}
