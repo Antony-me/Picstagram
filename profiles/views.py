@@ -24,7 +24,7 @@ def my_profile_view(request):
 
     return render(request,'profiles/myprofile.html', {'profile':profile, 'form':form, 'confirm':confirm})
 
-
+@login_required(login_url='/accounts/login/')
 def invites_received(request):
     profile = Profile.objects.get(user=request.user)
     invites = Relationship.objects.invatations_received(profile)
@@ -33,14 +33,14 @@ def invites_received(request):
     return render(request,'profiles/my_invite.html', {'invites':invites})
 
 
-
+@login_required(login_url='/accounts/login/')
 def invites_list(request):
     user = request.user
     toinvites = Profile.objects.get_all_profiles_to_invite(user)
 
     return render(request,'profiles/toinvite_list.html', {'toinvites':toinvites})
 
-
+@login_required(login_url='/accounts/login/')
 def profiles_list(request):
     user = request.user
     profiles = Profile.objects.get_all_profiles(user)

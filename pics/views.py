@@ -5,7 +5,10 @@ from profiles.models import Profile
 from .forms import PostModelForm, CommentModelForm
 from django.views.generic import UpdateView, DeleteView
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='/accounts/login/')
 def post_comment_create_and_list_view(request):
     qs = Post.objects.all()
     profile= Profile.objects.get(user=request.user)
@@ -39,6 +42,8 @@ def post_comment_create_and_list_view(request):
 
     return render(request,'posts/main.html' , {'qs':qs, 'profile':profile, 'p_form':p_form, 'c_form':c_form, 'post_added':post_added}) 
 
+
+@login_required(login_url='/accounts/login/')
 def like_unlike_post(request):
     user = request.user
     if request.method == 'POST':
