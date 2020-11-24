@@ -14,10 +14,9 @@
                     {{item.content}}
                 </div>
                 <div class="content">
-                    <form action="" method="POST">
+                    <form action="{% url 'pics:like-post-view' %}" method="POST">
                         {%csrf_token%}
                         <input type="hidden"name="post_id" value="{{item.id}}">
-
                         <button type="submit" class="ui primary button">Like</button>
                     </form>
                 </div>

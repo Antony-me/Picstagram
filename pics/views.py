@@ -35,3 +35,6 @@ def like_unlike_post(request):
 
             post_obj.save()
             like.save()
+
+
+    return redirect('pics:main-post-view')
