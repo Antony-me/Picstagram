@@ -3,6 +3,8 @@ from django.urls import reverse_lazy
 from .models import Post, Like
 from profiles.models import Profile
 from .forms import PostModelForm, CommentModelForm
+from django.views.generic import UpdateView
+from django.contrib import messages
 
 def post_comment_create_and_list_view(request):
     qs = Post.objects.all()
@@ -64,3 +66,17 @@ def like_unlike_post(request):
 
 
     return redirect('pics:main-post-view')
+
+class PostUpdateView(UpdateView):
+    form_class = PostModelForm
+    model = Post
+    template_name = 'posts/update.html'
+    success_url = reverse_lazy('posts:main-post-view')
+
+    def form_valid(self, form):
+        profile = Profile.objects.get(user=self.request.user)
+        if form.instance.author == profile:
+            return super().form_valid(form)
+        else:
+            form.add_error(None, "You need to be the author of the post in order to update it")
+            return super().form_invalid(form)
