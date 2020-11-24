@@ -6,9 +6,10 @@ from profiles.models import Profile
 
 def post_comment_create_and_list_view(request):
     qs = Post.objects.all()
+    profile= Profile.objects.get(user=request.user)
     
 
-    return render(request,'posts/main.html' , {'qs':qs}) 
+    return render(request,'posts/main.html' , {'qs':qs, 'profile':profile}) 
 
 
 def like_unlike_post(request):

@@ -17,7 +17,14 @@
                     <form action="{% url 'pics:like-post-view' %}" method="POST">
                         {%csrf_token%}
                         <input type="hidden"name="post_id" value="{{item.id}}">
-                        <button type="submit" class="ui primary button">Like</button>
+                        <button type="submit" class="ui primary button">
+                            {% if profile not in item.liked.all %}
+                                <i class="thumbs up icon"></i>&nbsp;Like
+                            {%else%}
+                            <i class="thumbs down icon"></i>&nbsp;Unlike
+                            {% endif %}
+                        </button>
+                        &nbsp;{{item.num_likes}}
                     </form>
                 </div>
             </div>
@@ -26,6 +33,7 @@
         </div>
         <div class="five wide column">
             Form
+            
         </div>
 
     </div>
