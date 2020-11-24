@@ -7,9 +7,37 @@ from .utils import get_slug
 from django.template.defaultfilters import slugify
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 
-# Create your models here.
+
+class ProfileManager(models.Manager):
+
+    def get_all_profiles_to_invite(self, sender):
+        profiles = Profile.objects.all().exclude(user=sender)
+        profile = Profile.objects.get(user=sender)
+        qs = Relationship.objects.filter(Q(sender=profile) | Q(receiver=profile))
+        print(qs)
+        print("#########")
+
+        accepted = set([])
+        for rel in qs:
+            if rel.status == 'accepted':
+                accepted.add(rel.receiver)
+                accepted.add(rel.sender)
+        print(accepted)
+        print("#########")
+
+        available = [profile for profile in profiles if profile not in accepted]
+        print(available)
+        print("#########")
+        return available
+        
+
+    def get_all_profiles(self, me):
+        profiles = Profile.objects.all().exclude(user=me)
+        return profiles
+
 
 # Create your models here.
 class Profile(models.Model):
@@ -23,6 +51,7 @@ class Profile(models.Model):
     created=models.DateTimeField(auto_now_add=True)
     slug= models.SlugField(unique=True, blank=True)
     
+    objects = ProfileManager()
 
     def get_friends(self):
         return self.friends.all()
