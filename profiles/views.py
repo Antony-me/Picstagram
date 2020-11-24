@@ -35,3 +35,10 @@ def profiles_list(request):
     return render(request,'profiles/profiles_list.html', {'profiles':profiles})
 
 
+
+def invites_list(request):
+    user = request.user
+    toinvites = Profile.objects.get_all_profiles_to_invite(user)
+
+    return render(request,'profiles/toinvite_list.html', {'toinvites':toinvites})
+
