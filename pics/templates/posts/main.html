@@ -32,7 +32,12 @@
             {%endfor%}
         </div>
         <div class="five wide column">
-            Form
+            <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+                {%csrf_token%}
+                {{p_form}}
+                <button type="submit" class="ui button positive">Add Post</button>
+
+            </form>
             
         </div>
 
