@@ -6,6 +6,15 @@
     <div class="right menu">
       {% if request.user.is_authenticated %}
       <div class="item">
+        <form action="" method="GET">
+          <div class="ui action left icon input">
+            <input class="prompt" type="text" name='q' placeholder="search friend by name...">
+            <i class="search icon"></i>
+            <button type='submit' class="ui button">Search</button>
+          </div>
+        </form>
+      </div>
+      <div class="item">
         <div class="ui floating dropdown icon button "> Notifications
           <i class="dropdown icon"></i>
           <div class="menu">
@@ -21,19 +30,11 @@
           </div>
         </div>
       </div>
-      <div class="item">
-        <form action="" method="GET">
-          <div class="ui action left icon input">
-            <input class="prompt" type="text" name='q' placeholder="search friend by name...">
-            <i class="search icon"></i>
-            <button type='submit' class="ui button">Search</button>
-          </div>
-        </form>
-      </div>
 
-      <a href="" class="item">
-        {{ request.user }}
-      </a>
+      <a href="{{path_to_my_profile}}" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
+        <img src={{.url}} class="ui avatar image">&nbsp;
+         {{ request.user }}
+    </a>
 
       <a href="" class="ui item">
         Logout

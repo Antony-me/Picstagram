@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-
+import django_heroku
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -140,3 +140,12 @@ cloudinary.config(
   api_key = "517714219614197", 
   api_secret = "RxTgjb9mL9Wghh3mCPklvlyCoyM" 
 )
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER='antonysimiyu993@gmail.com'
+EMAIL_HOST_PASSWORD='wzrswcguponyluga'
+
+django_heroku.settings(locals())

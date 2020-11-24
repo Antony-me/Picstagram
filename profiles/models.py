@@ -52,7 +52,11 @@ class Profile(models.Model):
     friends=models.ManyToManyField(User, blank=True, related_name='followers')
     created=models.DateTimeField(auto_now_add=True)
     slug= models.SlugField(unique=True, blank=True)
-    
+
+
+    def __str__(self):
+        return f"{self.user.username}-{self.created.strftime('%d-%m-%Y')}"
+
     objects = ProfileManager()
 
     def get_friends(self):
@@ -61,10 +65,6 @@ class Profile(models.Model):
     def friends_no(self):
         return self.friends.all().count
     
-    def __str__(self):
-        return f"{self.user.username}-{self.created.strftime('%d-%m-%Y')}"
-
-
     def get_friends(self):
         return self.friends.all()
 
