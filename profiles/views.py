@@ -30,9 +30,7 @@ def invites_received(request):
 
 def profiles_list(request):
     user = request.user
-
     profiles = Profile.objects.get_all_profiles(user)
-
 
     return render(request,'profiles/profiles_list.html', {'profiles':profiles})
 
