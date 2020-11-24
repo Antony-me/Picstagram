@@ -3,47 +3,87 @@
 {% block title %}main page{% endblock title %}
 
 {% block content %}
-
 <div class="ui grid">
-    <div class="row">
-        <div class="eleven wide column">
-            POSTS
-            {%for item in qs %}
-            <div class="ui fluid card">
-                <div class="content">
-                    {{item.content}}
+    <div class="eleven wide column">
+        {% for item in qs %}
+
+        <div class="ui fluid card">
+            <div class="content">
+                <div class="right floated meta">
+                    
                 </div>
-                <div class="content">
+                <img class="ui avatar image" src={{item.author.avatar.url}}> 
+                {{ item.author.user }} - {{ item.created|timesince}} ago
+            </div>
+            <div class="ui fluid image">
+                {% if item.image %}
+                    <img src={{item.image.url}}>
+                {% endif %}
+            </div>
+            <div class="content">
+                <p> {{ item.content }} </p>
+                <div class="right floated">
                     <form action="{% url 'pics:like-post-view' %}" method="POST">
-                        {%csrf_token%}
-                        <input type="hidden"name="post_id" value="{{item.id}}">
-                        <button type="submit" class="ui primary button">
-                            {% if profile not in item.liked.all %}
-                                <i class="thumbs up icon"></i>&nbsp;Like
-                            {%else%}
-                            <i class="thumbs down icon"></i>&nbsp;Unlike
-                            {% endif %}
-                        </button>
-                        &nbsp;{{item.num_likes}}
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value={{item.id}}>
+                        {% if profile not in item.liked.all %}
+                            <button type="submit" class="ui bwhite-sm button"><i class="thumbs up icon"></i>
+                            </button>
+                            <span> {{item.num_likes}} likes</span>
+                        {% else %}
+                            <button type="submit" class="ui bwhite-sm button"><i class="thumbs down icon"></i>
+                            </button>
+                            <span> {{item.num_likes}} likes</span>
+                        {% endif %}
                     </form>
                 </div>
+                <i class="comment icon"></i>
+                <span> {{ item.num_comments }} comments</span>
             </div>
-
-            {%endfor%}
+            <div class="extra content">
+                <div class="mb-5">
+                  
+                </div>
+                <button class="cmt_btn ui button mb-5">show / hide comments</button>
+                <div class="comment-box">
+                {% if item.comment_set.all %}
+                    {% for c in item.comment_set.all %}
+                    
+                        <div class="ui segment mb-5">
+                            <img class="ui avatar image" src={{c.user.avatar.url}}>
+                            <span>{{ c.user }}</span>
+                            <div class='mt-5'>{{ c.body }}</div>
+                        </div>
+                    
+                    {% endfor %}
+                {% endif %}
+                </div>
+  
+                <form action="" method="POST"class='ui fluid form'>
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value={{item.id}}>
+                    {{ c_form }}
+                    <button type="submit" name="submit_c_form" class="ui primary button mt-5 w-full">Send</button>
+                </form>
+            </div>
         </div>
-        <div class="five wide column">
-            <form action="" method="POST" class="ui form" enctype="multipart/form-data">
-                {%csrf_token%}
+
+
+        {% endfor %}
+    </div>
+    <div class="five wide column">
+        <div class="ui segment">
+            {% if post_added %}
+                <div class="ui green message">Post added</div>
+            {% endif %}
+            <form action="" method="POST" class='ui form' enctype="multipart/form-data">
+                {% csrf_token %}
                 {{p_form}}
-                <button type="submit" class="ui button positive">Add Post</button>
-
+                <button type='submit' name="submit_p_form" class="ui positive button w-full mt-5">Send</button>
             </form>
-            
         </div>
-
     </div>
 </div>
-
 {% endblock content %}
 
 {% block scripts %} 

@@ -2,27 +2,40 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from .models import Post, Like
 from profiles.models import Profile
-from .forms import PostModelForm
+from .forms import PostModelForm, CommentModelForm
 
 def post_comment_create_and_list_view(request):
     qs = Post.objects.all()
     profile= Profile.objects.get(user=request.user)
 
-    
+    #initials
     p_form = PostModelForm()
+    c_form = CommentModelForm()
     post_added = False
 
     profile = Profile.objects.get(user=request.user)
-    p_form = PostModelForm(request.POST, request.FILES)
 
-    if p_form.is_valid():
+    if 'submit_p_form' in request.POST:
+        print(request.POST)
+        p_form = PostModelForm(request.POST, request.FILES)
+        if p_form.is_valid():
             instance = p_form.save(commit=False)
             instance.author = profile
             instance.save()
             p_form = PostModelForm()
-           
-    return render(request,'posts/main.html' , {'qs':qs, 'profile':profile, 'p_form':p_form}) 
+            post_added = True
 
+    if 'submit_c_form' in request.POST:
+        c_form = CommentModelForm(request.POST)
+        if c_form.is_valid():
+            instance = c_form.save(commit=False)
+            instance.user = profile
+            instance.post = Post.objects.get(id=request.POST.get('post_id'))
+            instance.save()
+            c_form = CommentModelForm()
+
+
+    return render(request,'posts/main.html' , {'qs':qs, 'profile':profile, 'p_form':p_form, 'c_form':c_form, 'post_added':post_added}) 
 
 def like_unlike_post(request):
     user = request.user
