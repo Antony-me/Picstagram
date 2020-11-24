@@ -89,5 +89,5 @@ class PostDeleteView(DeleteView):
         pk = self.kwargs.get('pk')
         obj = Post.objects.get(pk=pk)
         if not obj.author.user == self.request.user:
-            messages.warning(self.request, 'You need to be the author of the post in order to delete it')
+            messages.warning(self.request, 'You dont have rights to delete this post')
         return obj
