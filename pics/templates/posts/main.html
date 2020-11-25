@@ -28,7 +28,9 @@ welcome {{user}} {{user.id}}
             </div>
             <div class="ui fluid image">
                 {% if item.image %}
+                <a href="{{item.image.url}}">
                     <img src={{item.image.url}}>
+                </a>
                 {% endif %}
             </div>
             <div class="content">
