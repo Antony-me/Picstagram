@@ -40,7 +40,7 @@
       <a href="{% url 'profiles:myinvites'%}" class="item">
         Requests
       </a>
-      <a href="{% url 'logout' %}" class="ui item">
+      <a href="{% url 'logout' %}?next={% url 'login'%}" class="ui item">
         Logout
       </a>
       {% else %}
