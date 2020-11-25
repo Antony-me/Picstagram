@@ -31,7 +31,7 @@
         </div>
       </div>
 
-      <a href="{{path_to_my_profile}}" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
+      <a href="{{user.avatar.url}}" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
         <img src={{.url}} class="ui avatar image">&nbsp;
          {{ request.user }}
     </a>
