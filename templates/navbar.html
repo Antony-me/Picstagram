@@ -1,6 +1,6 @@
 <div class="ui menu nav mb-7">
   <div class="ui container">
-    <a href="" class="item">
+    <a href="https://picstagram420.herokuapp.com/" class="item">
       <h3>Picstagram</h3>
     </a>
     <div class="right menu">
@@ -31,8 +31,8 @@
         </div>
       </div>
 
-      <a href="{{user.avatar.url}}" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
-        <img src={{.url}} class="ui avatar image">&nbsp;
+      <a href="https://picstagram420.herokuapp.com/accounts/profile/" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
+        <img src={{.url}} class="ui avatar image">&nbsp;</
          {{ request.user }}
     </a>
 

@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/accounts/login/')
 def post_comment_create_and_list_view(request):
     qs = Post.objects.all()
+
     profile= Profile.objects.get(user=request.user)
    
     #initials
@@ -83,8 +84,14 @@ def search_profile(request):
         message = "You haven't searched for any image category"
     return render(request, 'results.html', {'message': message})
 
+@login_required(login_url='/accounts/login/')
+def myposts(request):
 
+    qs2= Post.objects.all()
 
+    
+
+    return render(request, 'posts/myposts.html', {'qs2': qs2})
 
 class PostUpdateView(UpdateView):
     form_class = PostModelForm
