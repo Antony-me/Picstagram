@@ -29,7 +29,7 @@ urlpatterns = [
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path(r'',include('pics.urls', namespace='pics')),
     path('accounts/', include('profiles.urls', namespace='profiles')),
-    # path(r'^tinymce/', include('tinymce.urls')),
+    
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

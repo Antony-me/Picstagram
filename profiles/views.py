@@ -52,6 +52,20 @@ def profiles_list(request):
     return render(request,'profiles/profiles_list.html', {'profiles':profiles, 'persons':person_profile})
 
 
+@login_required(login_url='/accounts/login/')
+def search_profile(request):
+    if 'search_user' in request.GET and request.GET['search_user']:
+        name = request.GET.get("search_user")
+        results = Profile.search_profile(name)
+     
+        return render(request, 'results.html', {'results': results})
+        
+    else:
+        message = "You haven't searched for any image category"
+    return render(request, 'results.html', {'message': message})
+
+
+
 def profilesListView(ListView):
     model = Profile
     pass

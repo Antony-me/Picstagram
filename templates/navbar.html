@@ -1,18 +1,19 @@
 <div class="ui menu nav mb-7">
   <div class="ui container">
-    <a href="https://picstagram420.herokuapp.com/" class="item">
+    <a href="{% url 'pics:main-post-view'%}" class="item">
       <h3>Picstagram</h3>
     </a>
     <div class="right menu">
       {% if request.user.is_authenticated %}
       <div class="item">
-        <form action="" method="GET" >
+        <form class="navbar-form" role="search" action="{% url 'profiles:search'%}">
           <div class="ui action left icon input">
-            <input class="prompt" type="text" name='q' placeholder="search friend by name..." >
+            <input class="form-control" type="text"  placeholder="search friend by name..."  name="search_user">
             <i class="search icon"></i>
             <button type='submit' class="ui button" role="search" action="">Search</button>
           </div>
-        </form>
+        </form> 
+
       </div>
       <div class="item">
         <div class="ui floating dropdown icon button "> Notifications
@@ -31,12 +32,12 @@
         </div>
       </div>
 
-      <a href="https://picstagram420.herokuapp.com/accounts/profile/" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
-        <img src={{.url}} class="ui avatar image">&nbsp;
+      <a href="{% url 'profiles:myprofile'%}" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
+        <img src="{{user.profile.avatar.url}}" class="ui avatar image">&nbsp;
         {{ request.user }}
       </a>
 
-      <a href="" class="ui item">
+      <a href="{% url 'logout' %}" class="ui item">
         Logout
       </a>
       {% else %}

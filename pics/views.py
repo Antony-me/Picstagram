@@ -73,16 +73,6 @@ def like_unlike_post(request):
 
     return redirect('pics:main-post-view')
 
-@login_required(login_url='/accounts/login/')
-def search_profile(request):
-    if 'search_user' in request.GET and request.GET['search_user']:
-        name = request.GET.get("search_user")
-        results = Profile.search_profile(name)
-     
-        return render(request, 'results.html')
-    else:
-        message = "You haven't searched for any image category"
-    return render(request, 'results.html', {'message': message})
 
 @login_required(login_url='/accounts/login/')
 def myposts(request):
@@ -90,7 +80,6 @@ def myposts(request):
     qs2= Post.objects.all()
 
     
-
     return render(request, 'posts/myposts.html', {'qs2': qs2})
 
 class PostUpdateView(UpdateView):

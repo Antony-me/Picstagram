@@ -11,6 +11,5 @@ urlpatterns=[
     path('liked/', like_unlike_post, name='like-post-view'),
     path('<pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('<pk>/Delete/', PostDeleteView.as_view(), name='post-delete'), 
-    # path(r'^search/', views.search_profile, name='search'),
     path('myposts', myposts, name='myposts'),
 ]
