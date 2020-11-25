@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'pics.apps.PicsConfig',
     'profiles.apps.ProfilesConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -146,10 +147,14 @@ cloudinary.config(
 )
 
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER='antonysimiyu993@gmail.com'
 EMAIL_HOST_PASSWORD='wzrswcguponyluga'
+
+
 
 django_heroku.settings(locals())

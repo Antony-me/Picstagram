@@ -1,12 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
 
-# Create your views here.
-def home(request):
+# # Create your views here.
+# def register(request):
+#     form = UserCreationForm
 
-    user= request.user
-    print(user)
+#     return render(request, 'django_registeration/registeration_form.html',{'form':form})
 
- 
-    return render(request, 'home.html',{'user':user})
+# def register(request):
+
+#     pass 
+#     form = UserCreationForm
+
+#     return render(request, 'django_registeration/registeration_form.html',{'form':form})
 
