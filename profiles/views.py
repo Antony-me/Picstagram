@@ -26,6 +26,7 @@ def my_profile_view(request):
 @login_required(login_url='/accounts/login/')
 def invites_received(request):
     profile = Profile.objects.get(user=request.user)
+
     invites = Relationship.objects.invatations_received(profile)
 
 
@@ -41,15 +42,16 @@ def invites_list(request):
 
 @login_required(login_url='/accounts/login/')
 def profiles_list(request):
+
     user = request.user
     profiles = Profile.objects.get_all_profiles(user)
 
-    person= User.objects.get(username__iexact=request.user) 
-    person_profile = Profile.objects.get(user=person)
+    # person= User.objects.get(__iexact=user) 
+    # person_profile = Profile.objects.get(user=person)
 
-    print(person_profile)
+    print(profiles)
 
-    return render(request,'profiles/profiles_list.html', {'profiles':profiles, 'persons':person_profile})
+    return render(request,'profiles/profiles_list.html', {'profiles':profiles})
 
 
 @login_required(login_url='/accounts/login/')
@@ -63,11 +65,4 @@ def search_profile(request):
     else:
         message = "You haven't searched for any image category"
     return render(request, 'results.html', {'message': message})
-
-
-
-def profilesListView(ListView):
-    model = Profile
-    pass
-
 

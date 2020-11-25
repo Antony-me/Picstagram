@@ -16,12 +16,10 @@
 
       </div>
       <div class="item">
-        <div class="ui floating dropdown icon button "> Notifications
+        <div class="ui floating dropdown icon button "> Friends
           <i class="dropdown icon"></i>
           <div class="menu">
-            <a href="" class="item">
-              All Profiles
-            </a>
+            
             <a href="" class="item">
               Send Invites
             </a>
@@ -36,7 +34,12 @@
         <img src="{{user.profile.avatar.url}}" class="ui avatar image">&nbsp;
         {{ request.user }}
       </a>
-
+      <a href="{% url 'profiles:profile-list'%}" class="item">
+        All users
+      </a>
+      <a href="{% url 'profiles:myinvites'%}" class="item">
+        Requests
+      </a>
       <a href="{% url 'logout' %}" class="ui item">
         Logout
       </a>

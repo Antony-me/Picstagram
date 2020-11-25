@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
-
-{% block title %}
-my invites
-{% endblock title %}
-
 {% block content %}
 
-{%  for profile in profiles%}
-<ul>
-    <li>{{profile}}</li>
-</ul>
+<div class="container" style="margin-top:4%">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
 
-{% endfor %}
-{% endblock content %}
+            <hr>
+            {%  for profile in profiles%}
+            {{invite}}
+            <div class="row">
+                <div class="col-md-3">
+                    <span><strong><a href="">{{profile}}</a></strong></span><br>
+                    <hr>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
