@@ -13,7 +13,6 @@
                 <div class="col-md-3">
                     <a href="{% url 'profiles:myprofile'%}" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
                         <img src="{{profile.avatar.url}}" class="ui avatar image">&nbsp;
-                        {{ request.user }}
                       </a>
                     <span><strong><a href="">{{profile}}</a></strong></span><br>
                     <span><strong><a href="">{{profile.bio}}</a></strong></span><br>
