@@ -43,19 +43,23 @@ class ProfileManager(models.Manager):
 
 # Create your models here.
 class Profile(models.Model):
-    first_name=models.CharField(max_length=200, blank=False)
-    last_name=models.CharField(max_length=200, blank=False)
+    first_name=models.CharField(max_length=200, blank=True)
+    last_name=models.CharField(max_length=200, blank=True)
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     bio=models.CharField(max_length=350, default="No bio...")
-    email=models.EmailField(max_length=200, blank=False)
-    avatar =CloudinaryField('image', default="https://res.cloudinary.com/dpcrhvllf/image/upload/v1606208498/ouao15vmh1c1wecxm5ir.png")
+    email=models.EmailField(max_length=200, blank=True)
+    avatar =CloudinaryField('image', default="https://res.cloudinary.com/dpcrhvllf/image/upload/v1606208498/ouao15vmh1c1wecxm5ir.pngs")
     friends=models.ManyToManyField(User, blank=True, related_name='followers')
     created=models.DateTimeField(auto_now_add=True)
-    slug= models.SlugField(unique=True, blank=True)
+    slug= models.SlugField(unique=False, blank=True)
 
+
+    @classmethod
+    def search_profile(cls, name):
+        return cls.objects.filter(user__username__icontains=name).all()
 
     def __str__(self):
-        return f"{self.user.username}-{self.created.strftime('%d-%m-%Y')}"
+        return f"{self.user.username}"
 
     objects = ProfileManager()
 
@@ -93,19 +97,22 @@ class Profile(models.Model):
         return total_liked
 
 
-    def save(self, *args, **kwargs):
-        ex = False
-        if self.first_name and self.last_name:
-            to_slug = slugify(str(self.first_name)+ " "+str(self.last_name))
-            ex = Profile.objects.filter(slug=to_slug).exists()
-            while ex:
-                to_slug=slugify(to_slug + " "+ str(get_slug()))
-                ex = Profile.objects.filter(slug=to_slug).exists()
+    # def save(self, *args, **kwargs):
+    #     ex = False
+    #     if self.first_name and self.last_name:
+    #         to_slug = slugify(str(self.first_name)+ " "+str(self.last_name))
+    #         ex = Profile.objects.filter(slug=to_slug).exists()
+    #         while ex:
+    #             to_slug=slugify(to_slug + " "+ str(get_slug()))
+    #             ex = Profile.objects.filter(slug=to_slug).exists()
 
-            else:
-                to_slug= str(self.user)
-            self.slug = to_slug
-            super().save(*args, **kwargs)
+    #         else:
+    #             to_slug= str(self.user)
+    #         self.slug = to_slug
+    #         super().save(*args, **kwargs)
+
+    def save(self, *args, **kwargs): 
+        super().save(*args, **kwargs)
 
 
 STATUS_CHOICES = (

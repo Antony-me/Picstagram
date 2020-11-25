@@ -3,6 +3,8 @@
 {% block title %}main page{% endblock title %}
 
 {% block content %}
+
+welcome {{user}} {{user.id}}
 <div class="ui grid">
     <div class="eleven wide column">
         {% for item in qs %}

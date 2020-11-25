@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 def post_comment_create_and_list_view(request):
     qs = Post.objects.all()
     profile= Profile.objects.get(user=request.user)
+    user=request.user
 
     #initials
     p_form = PostModelForm()
@@ -40,7 +41,7 @@ def post_comment_create_and_list_view(request):
             c_form = CommentModelForm()
 
 
-    return render(request,'posts/main.html' , {'qs':qs, 'profile':profile, 'p_form':p_form, 'c_form':c_form, 'post_added':post_added}) 
+    return render(request,'posts/main.html' , {'qs':qs, 'profile':profile, 'p_form':p_form, 'c_form':c_form, 'post_added':post_added, 'user':user}) 
 
 
 @login_required(login_url='/accounts/login/')
@@ -71,6 +72,20 @@ def like_unlike_post(request):
 
 
     return redirect('pics:main-post-view')
+
+
+def search_profile(request):
+    if 'search_user' in request.GET and request.GET['search_user']:
+        name = request.GET.get("search_user")
+        results = Profile.search_profile(name)
+     
+        return render(request, 'results.html')
+    else:
+        message = "You haven't searched for any image category"
+    return render(request, 'results.html', {'message': message})
+
+
+
 
 class PostUpdateView(UpdateView):
     form_class = PostModelForm

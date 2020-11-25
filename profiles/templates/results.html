@@ -1,0 +1,37 @@
+{% extends 'instagram-page/base.html' %}
+{% block content %}
+
+<div class="container" style="margin-top:4%">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% if results %}
+            <h4 class="text-center">Found {{ results|length }} user{{ results|pluralize }}</h4>
+            {% else %}
+            <h4 class="text-center"> Found 0 user with username <strong></strong></h4>
+
+            
+            {% endif %}
+            <hr>
+            {% if results %}
+            {% for user_profile in results %}
+
+            
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="{{user_profile.user.profile.profile_photo.url}}" alt=""
+                             class="rounded-circle border ml-3 mt-2  mr-3" width="55" height="55">
+                    
+                        <span><strong><a href="">{{user_profile.user.username}}</a></strong></span><br>
+                        
+                    
+                </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+</div>
+
+{% endblock %}

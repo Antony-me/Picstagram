@@ -56,3 +56,5 @@ def profiles_list(request):
 def profilesListView(ListView):
     model = Profile
     pass
+
+

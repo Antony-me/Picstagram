@@ -6,11 +6,11 @@
     <div class="right menu">
       {% if request.user.is_authenticated %}
       <div class="item">
-        <form action="" method="GET">
+        <form action="" method="GET" >
           <div class="ui action left icon input">
-            <input class="prompt" type="text" name='q' placeholder="search friend by name...">
+            <input class="prompt" type="text" name='q' placeholder="search friend by name..." >
             <i class="search icon"></i>
-            <button type='submit' class="ui button">Search</button>
+            <button type='submit' class="ui button" role="search" action="">Search</button>
           </div>
         </form>
       </div>
