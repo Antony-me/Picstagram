@@ -11,7 +11,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/accounts/login/')
 def my_profile_view(request):
-
     profile = Profile.objects.get(user=request.user)
     form = ProfileModelForm(request.POST or None, request.FILES or None, instance=profile)
     confirm = False

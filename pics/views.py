@@ -12,8 +12,7 @@ from django.contrib.auth.decorators import login_required
 def post_comment_create_and_list_view(request):
     qs = Post.objects.all()
     profile= Profile.objects.get(user=request.user)
-    user=request.user
-
+   
     #initials
     p_form = PostModelForm()
     c_form = CommentModelForm()
@@ -41,7 +40,7 @@ def post_comment_create_and_list_view(request):
             c_form = CommentModelForm()
 
 
-    return render(request,'posts/main.html' , {'qs':qs, 'profile':profile, 'p_form':p_form, 'c_form':c_form, 'post_added':post_added, 'user':user}) 
+    return render(request,'posts/main.html' , {'qs':qs, 'profile':profile, 'p_form':p_form, 'c_form':c_form, 'post_added':post_added}) 
 
 
 @login_required(login_url='/accounts/login/')
