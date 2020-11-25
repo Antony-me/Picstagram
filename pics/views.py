@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/accounts/login/')
 def post_comment_create_and_list_view(request):
     qs = Post.objects.all()
-    # profile= Profile.objects.get(user=request.user)
+    profile= Profile.objects.get(user=request.user)
    
     #initials
     p_form = PostModelForm()

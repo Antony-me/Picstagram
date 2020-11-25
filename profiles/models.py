@@ -54,14 +54,15 @@ class Profile(models.Model):
     slug= models.SlugField(unique=False, blank=True)
 
 
+    objects = ProfileManager()
+
+
     @classmethod
     def search_profile(cls, name):
         return cls.objects.filter(user__username__icontains=name).all()
 
     def __str__(self):
         return f"{self.user.username}"
-
-    objects = ProfileManager()
 
     def get_friends(self):
         return self.friends.all()
