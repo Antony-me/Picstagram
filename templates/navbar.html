@@ -32,9 +32,9 @@
       </div>
 
       <a href="https://picstagram420.herokuapp.com/accounts/profile/" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
-        <img src={{.url}} class="ui avatar image">&nbsp;</
-         {{ request.user }}
-    </a>
+        <img src={{.url}} class="ui avatar image">&nbsp;
+        {{ request.user }}
+      </a>
 
       <a href="" class="ui item">
         Logout
