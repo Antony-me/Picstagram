@@ -147,7 +147,7 @@ cloudinary.config(
 )
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK ='bootstrap4'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
