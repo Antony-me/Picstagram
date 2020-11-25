@@ -72,7 +72,7 @@ def like_unlike_post(request):
 
     return redirect('pics:main-post-view')
 
-
+@login_required(login_url='/accounts/login/')
 def search_profile(request):
     if 'search_user' in request.GET and request.GET['search_user']:
         name = request.GET.get("search_user")
