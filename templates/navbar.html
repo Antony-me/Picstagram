@@ -1,11 +1,11 @@
 <div class="ui menu nav mb-7">
-  <div class="ui container">
+  <div class="ui container ">
     <a href="{% url 'pics:main-post-view'%}" class="item">
       <h3>Picstagram</h3>
     </a>
-    <div class="right menu">
+    <div class="right menu class="topnav" id="myTopnav">
       {% if request.user.is_authenticated %}
-      <div class="item">
+      <div class="item icon">
         <form class="navbar-form" role="search" action="{% url 'profiles:search'%}">
           <div class="ui action left icon input">
             <input class="form-control" type="text"  placeholder="search friend by name..."  name="search_user">
@@ -15,7 +15,7 @@
         </form> 
 
       </div>
-      <div class="item">
+      <div class="item responsive">
         <div class="ui floating dropdown icon button "> Friends
           <i class="dropdown icon"></i>
           <div class="menu">
@@ -29,7 +29,6 @@
           </div>
         </div>
       </div>
-
       <a href="{% url 'profiles:myprofile'%}" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
         <img src="{{user.profile.avatar.url}}" class="ui avatar image">&nbsp;
         {{ request.user }}

@@ -6,7 +6,7 @@
 
 welcome {{user}} {{user.id}}
 {{qs2}}
-<div class="ui grid">
+<div class="ui grid responsive">
     <div class="eleven wide column">
         {% for item in qs %}
 
@@ -55,7 +55,7 @@ welcome {{user}} {{user.id}}
                 <div class="mb-5">
                   
                 </div>
-                <button class="cmt_btn ui button mb-5">show / hide comments</button>
+                <button class="cmt_btn ui button mb-5">Comments</button>
                 <div class="comment-box">
                 {% if item.comment_set.all %}
                     {% for c in item.comment_set.all %}
