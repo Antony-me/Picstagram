@@ -16,7 +16,7 @@ A clone of instagram that has the same functionalities of instagram
 
 - Css 
 
-- Shell
+- Bootstrap and Semantic UI
 
 - SQLAkchemy
 
