@@ -15,20 +15,6 @@
         </form> 
 
       </div>
-      <div class="item responsive">
-        <div class="ui floating dropdown icon button "> Friends
-          <i class="dropdown icon"></i>
-          <div class="menu">
-            
-            <a href="" class="item">
-              Send Invites
-            </a>
-            <a href="" class="item">
-              Received Invites
-            </a>
-          </div>
-        </div>
-      </div>
       <a href="{% url 'profiles:myprofile'%}" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
         <img src="{{user.profile.avatar.url}}" class="ui avatar image">&nbsp;
         {{ request.user }}

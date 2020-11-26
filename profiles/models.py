@@ -12,27 +12,21 @@ from cloudinary.models import CloudinaryField
 
 
 
-
 class ProfileManager(models.Manager):
 
     def get_all_profiles_to_invite(self, sender):
         profiles = Profile.objects.all().exclude(user=sender)
         profile = Profile.objects.get(user=sender)
         qs = Relationship.objects.filter(Q(sender=profile) | Q(receiver=profile))
-        print(qs)
-        print("#########")
 
         accepted = set([])
         for rel in qs:
             if rel.status == 'accepted':
                 accepted.add(rel.receiver)
                 accepted.add(rel.sender)
-        print(accepted)
-        print("#########")
 
         available = [profile for profile in profiles if profile not in accepted]
-        print(available)
-        print("#########")
+        
         return available
         
 
@@ -40,8 +34,6 @@ class ProfileManager(models.Manager):
         profiles = Profile.objects.all().exclude(user=me)
         return profiles
 
-
-# Create your models here.
 class Profile(models.Model):
     first_name=models.CharField(max_length=200, blank=True)
     last_name=models.CharField(max_length=200, blank=True)
@@ -98,20 +90,6 @@ class Profile(models.Model):
         return total_liked
 
 
-    # def save(self, *args, **kwargs):
-    #     ex = False
-    #     if self.first_name and self.last_name:
-    #         to_slug = slugify(str(self.first_name)+ " "+str(self.last_name))
-    #         ex = Profile.objects.filter(slug=to_slug).exists()
-    #         while ex:
-    #             to_slug=slugify(to_slug + " "+ str(get_slug()))
-    #             ex = Profile.objects.filter(slug=to_slug).exists()
-
-    #         else:
-    #             to_slug= str(self.user)
-    #         self.slug = to_slug
-    #         super().save(*args, **kwargs)
-
     def save(self, *args, **kwargs): 
         super().save(*args, **kwargs)
 
@@ -120,7 +98,6 @@ STATUS_CHOICES = (
     ('send', 'send'),
     ('accepted', 'accepted')
 )
-
 
 class RelationshipManager(models.Manager):
     def invatations_received(self, receiver):
